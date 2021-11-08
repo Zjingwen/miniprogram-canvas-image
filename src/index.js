@@ -1,3 +1,3 @@
-export default function () {
-  console.log('core')
-}
+import {register} from './helpers'
+
+Page = register(Page)

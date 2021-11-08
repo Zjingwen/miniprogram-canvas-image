@@ -1,8 +1,21 @@
-import core from "../../components/index"
+import '../../components/index'
+
 
 Page({
-  onLoad: function (options) {
-    console.log(options);
-    core();
+  onLoad() {
+    this.onStart()
+  },
+  onShow() {
+    // this.onStart()
+  },
+  onMount(val) {
+    console.log('page onMount', val)
+  },
+  onUnmount() {
+    console.log('page onUnmount')
+  },
+  onBut() {
+    this.onStart()
+    console.log('page onBut')
   }
 })
