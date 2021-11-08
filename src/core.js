@@ -52,7 +52,7 @@ export function renderCanvas(vm) {
 export function destroyCanvas(vm) {
   console.log('destroyCanvas', vm)
   // 执行
-  vm.onUnmount()
+  vm.onUnmount.call(vm)
   vm.posterStatus = UNMOUNT
   // start(vm)
 }
