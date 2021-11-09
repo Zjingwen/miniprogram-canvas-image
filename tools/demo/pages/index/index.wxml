@@ -1,4 +1,3 @@
 <view>
-  <p>生成分享图</p>
-  <button bindtap="onBut">点击设置</button>
+  <button bindtap="onBut">触发</button>
 </view>

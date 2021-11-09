@@ -1,5 +1,8 @@
+/* eslint-disable no-const-assign */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-debugger */
 /* eslint-disable import/no-cycle */
-import {start} from './core'
+import {start} from './start'
 
 export const NOT_BOOTSTRAP = 'NOT_BOOTSTRAP'// 未准备
 export const BOOTSTRAP = 'BOOTSTRAP'// 已准备
@@ -33,7 +36,7 @@ export function isUnmount(vm) {
 export const register = (Page) => (
   vm => {
     vm.posterStatus = NOT_BOOTSTRAP
-
+    // 挂载生命周期
     if (!Object.prototype.hasOwnProperty.call(vm, 'onBootstrap')) {
       vm.onBootstrap = []
     }
@@ -46,16 +49,19 @@ export const register = (Page) => (
     if (!Object.prototype.hasOwnProperty.call(vm, 'onUnmount')) {
       vm.onUnmount = function () { }
     }
+
+    // 挂载方法
     if (!Object.prototype.hasOwnProperty.call(vm, 'onStart')) {
-      vm.onStart = function () {
+      vm.onStart = function (cb) {
+        if (cb) cb(vm)
         start(vm)
       }
     }
 
-    // TODO 挂载canvas渲染方法
+    // 挂载canvas渲染方法
     // onBootstrap() // 准备渲染，初始化数据
     // onMount()     // 渲染完成
-    // onUnmount()   // 渲染结束
+    // onUnmount()   // 销毁渲染
     // onStart()     // 启动渲染方法
     return Page(vm)
   }

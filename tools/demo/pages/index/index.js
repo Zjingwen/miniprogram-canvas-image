@@ -3,11 +3,26 @@ import '../../components/index'
 
 Page({
   onLoad() {
-    this.onStart()
+    // console.group('onLoad')
+    // this.onStart()
+    // console.groupEnd()
   },
   onShow() {
+    // console.group('onShow')
     // this.onStart()
+    // console.groupEnd()
   },
+  onBootstrap: [
+    async (vm) => {
+      console.log('onBootstrap-1', vm)
+    },
+    async (vm) => {
+      console.log('onBootstrap-2', vm)
+    },
+    async (vm) => {
+      console.log('onBootstrap-3', vm)
+    }
+  ],
   onMount(val) {
     console.log('page onMount', val)
   },
@@ -15,7 +30,8 @@ Page({
     console.log('page onUnmount')
   },
   onBut() {
+    console.group('onBut')
     this.onStart()
-    console.log('page onBut')
+    console.groupEnd()
   }
 })
