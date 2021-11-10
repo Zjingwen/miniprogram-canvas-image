@@ -28,7 +28,11 @@ function flattenFnArray(fns, canvas, customProps) {
 }
 
 function createCanvas(width, height) {
-  return wx.createOffscreenCanvas({type: '2d', width, height})
+  const el = wx.createOffscreenCanvas({type: '2d', width, height})
+  return {
+    canvas: el,
+    context: el.getContext('2d')
+  }
 }
 
 // 初始设置

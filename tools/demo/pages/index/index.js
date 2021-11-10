@@ -11,17 +11,18 @@ Page({
     // console.groupEnd()
   },
   onShow() {
-    console.group('onShow')
-    this.onStart()
-    console.groupEnd()
+    // console.group('onShow')
+    // this.onStart()
+    // console.groupEnd()
   },
   onBootstrap: [
     {
       customProp: {
-        height: 300,
-        width: 150
+        height: 300, // 底图高
+        width: 150 // 底图宽
       },
       app: async (canvas, prop) => {
+        // 用来绘制初始化的图片
         console.log('onBootstrap-1-canvas', canvas)
         console.log('onBootstrap-1-prop', prop)
 
@@ -37,6 +38,12 @@ Page({
           setTimeout(() => {
             console.log('onBootstrap-1-2-promise-canvas', canvas)
             console.log('onBootstrap-1-2-promise-prop', prop)
+            resolve()
+          }, 5000)
+        })
+        canvas.drow()
+        await new Promise((resolve) => {
+          setTimeout(() => {
             resolve()
           }, 5000)
         })
