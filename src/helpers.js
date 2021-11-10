@@ -1,3 +1,5 @@
+/* eslint-disable no-undef-init */
+/* eslint-disable import/no-mutable-exports */
 /* eslint-disable no-const-assign */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-debugger */
@@ -12,6 +14,8 @@ export const MOUNT = 'MOUNT'// 已运行
 
 export const NOT_UNMOUNT = 'NOT_UNMOUNT'// 未卸载
 export const UNMOUNT = 'UNMOUNT'// 已卸载
+
+export let INDEX = undefined
 
 // 当前应用是否被注册
 export function isBootstarp(vm) {
@@ -52,8 +56,9 @@ export const register = (Page) => (
 
     // 挂载方法
     if (!Object.prototype.hasOwnProperty.call(vm, 'onStart')) {
-      vm.onStart = function (cb) {
-        if (cb) cb(vm)
+      vm.onStart = function (i) {
+        if (i !== undefined) INDEX = i
+        else INDEX = undefined
         start(vm)
       }
     }

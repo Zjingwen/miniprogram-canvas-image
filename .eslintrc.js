@@ -52,6 +52,7 @@ module.exports = {
     'no-param-reassign': 'off',
     'no-plusplus': 'off',
     'no-shadow': 'off',
+    "no-global-assign": ["error", {"exceptions": ["Object"]}],
     'no-multi-assign': 'off',
     'no-underscore-dangle': 'off',
     'node/no-deprecated-api': 'error',

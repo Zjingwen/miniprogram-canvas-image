@@ -1,3 +1,7 @@
 <view>
-  <button bindtap="onBut">触发</button>
+  <canvas canvas-id="poster" style="width:300px;height:150px;"></canvas>
+  <button bindtap="onButAll">触发 全部</button>
+  <button bindtap="onBut0">触发 0</button>
+  <button bindtap="onBut1">触发 1</button>
+  <button bindtap="onBut2">触发 2</button>
 </view>

@@ -18,17 +18,49 @@ Page({
   onBootstrap: [
     {
       customProp: {
-        height: 300, // 底图高
-        width: 150 // 底图宽
+        width: 696, // 底图宽
+        height: 326, // 底图高
       },
-      app: async (canvas, prop) => {
+      app: async (el, prop) => {
         // 用来绘制初始化的图片
-        console.log('onBootstrap-1-canvas', canvas)
+        console.log('onBootstrap-1-canvas', el)
         console.log('onBootstrap-1-prop', prop)
 
+        // const {canvas, ctx} = el
+        // console.log(canvas)
+        // // 创建一个图片
+        // const image = canvas.createImage()
+
+        // // 等待图片加载
+        // await new Promise(resolve => {
+        //   image.onload = resolve
+        //   image.src = 'http://pic.616pic.com/bg_w1180/00/11/34/vo5eyRAGS3.jpg' // 要加载的图片 url
+        // })
+
+        // 把图片画到离屏 canvas 上
+        // ctx.clearRect(0, 0, prop.width, prop.height)
+        // ctx.drawImage(image, 0, 0, prop.width, prop.height)
+        // // 获取画完后的数据
+        // const {data, dataUnion} = ctx.getImageData(0, 0, prop.width, prop.height)
+        // console.log(data)
+        // console.log(ctx)
+        // wx.canvasPutImageData({
+        //   canvasId: 'poster',
+        //   x: 0,
+        //   y: 0,
+        //   width: prop.width,
+        //   height: prop.height,
+        //   data: dataUnion,
+        //   success(res) {
+        //     console.log('success canvasPutImageData', res)
+        //   },
+        //   fail(res) {
+        //     console.log('fail canvasPutImageData', res)
+        //   }
+        // })
         await new Promise((resolve) => {
           setTimeout(() => {
-            console.log('onBootstrap-1-1-promise-canvas', canvas)
+            console.log('onBootstrap-1-1-promise-canvas', el)
             console.log('onBootstrap-1-1-promise-prop', prop)
             resolve()
           }, 5000)
@@ -36,14 +68,8 @@ Page({
 
         await new Promise((resolve) => {
           setTimeout(() => {
-            console.log('onBootstrap-1-2-promise-canvas', canvas)
+            console.log('onBootstrap-1-2-promise-canvas', el)
             console.log('onBootstrap-1-2-promise-prop', prop)
-            resolve()
-          }, 5000)
-        })
-        canvas.drow()
-        await new Promise((resolve) => {
-          setTimeout(() => {
             resolve()
           }, 5000)
         })
@@ -70,9 +96,24 @@ Page({
       },
     },
   ],
-  onBut() {
+  onButAll() {
     console.group('onBut')
     this.onStart()
+    console.groupEnd()
+  },
+  onBut0() {
+    console.group('onBut')
+    this.onStart(0)
+    console.groupEnd()
+  },
+  onBut1() {
+    console.group('onBut')
+    this.onStart(1)
+    console.groupEnd()
+  },
+  onBut2() {
+    console.group('onBut 2')
+    this.onStart(2)
     console.groupEnd()
   }
 })

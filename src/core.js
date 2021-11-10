@@ -13,7 +13,8 @@ import {
   NOT_MOUNT,
   NOT_UNMOUNT,
   UNMOUNT,
-  MOUNT
+  MOUNT,
+  INDEX,
 } from './helpers'
 import {
   start
@@ -21,6 +22,8 @@ import {
 
 function flattenFnArray(fns, canvas, customProps) {
   fns = Array.isArray(fns) ? fns : [fns]
+  canvas = Array.isArray(canvas) ? canvas : [canvas]
+  customProps = Array.isArray(customProps) ? customProps : [customProps]
 
   return function (props) {
     return fns.reduce((resultPromise, fn, i) => (resultPromise.then(() => fn(canvas[i], customProps[i], props))), Promise.resolve())
@@ -31,18 +34,25 @@ function createCanvas(width, height) {
   const el = wx.createOffscreenCanvas({type: '2d', width, height})
   return {
     canvas: el,
-    context: el.getContext('2d')
+    ctx: el.getContext('2d')
   }
 }
 
 // 初始设置
 export function settingCanvas(vm) {
-  console.log('settingCanvas', vm)
   vm.posterStatus = BOOTSTRAP
-  const canvas = vm.onBootstrap.map(v => (createCanvas(...v.customProp)))
-  const customProps = vm.onBootstrap.map(v => v.customProp)
+  let canvas = vm.onBootstrap.map(v => (createCanvas(v.customProp.width, v.customProp.height)))
+  let customProps = vm.onBootstrap.map(v => v.customProp)
+  let Bootstrap = vm.onBootstrap.map(v => v.app)
 
-  flattenFnArray(vm.onBootstrap.map(v => v.app), canvas, customProps)().then(() => {
+  // 只执行对应的Bootstrap
+  if (INDEX !== undefined) {
+    canvas = canvas[INDEX]
+    customProps = customProps[INDEX]
+    Bootstrap = Bootstrap[INDEX]
+  }
+
+  flattenFnArray(Bootstrap, canvas, customProps)().then(() => {
     vm.posterStatus = NOT_MOUNT
     start(vm)
   })
