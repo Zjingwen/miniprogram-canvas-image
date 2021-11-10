@@ -18,8 +18,8 @@ Page({
   onBootstrap: [
     {
       customProp: {
-        width: 696, // 底图宽
-        height: 326, // 底图高
+        width: 330, // 底图宽
+        height: 518, // 底图高
       },
       app: async (el, prop) => {
         // 用来绘制初始化的图片
@@ -27,8 +27,16 @@ Page({
         console.log('onBootstrap-1-prop', prop)
 
         const {canvas, ctx} = el
-        console.log(canvas.testLog)
-        console.log(ctx.testLog)
+        console.log(canvas)
+        console.log(ctx)
+
+        ctx.view({
+          color: '#FFFFFF',
+          w: prop.width,
+          h: prop.height,
+          r: 8
+        })
+
         // 创建一个图片
         const image = canvas.createImage()
 
@@ -38,12 +46,19 @@ Page({
           image.src = 'http://pic.616pic.com/bg_w1180/00/11/34/vo5eyRAGS3.jpg' // 要加载的图片 url
         })
 
-        // 把图片画到离屏 canvas 上
-        ctx.clearRect(0, 0, prop.width, prop.height)
-        ctx.drawImage(image, 0, 0, prop.width, prop.height)
+        ctx.image({
+          image,
+          x: 12,
+          y: 12,
+          w: 306,
+          h: 306,
+          r: 4
+        })
+        // // 把图片画到离屏 canvas 上
+        // ctx.clearRect(12, 12, 306, 306)
+        // ctx.drawImage(image, 12, 12, 306, 306)
         // 获取画完后的数据
-        const {data, dataUnion} = ctx.getImageData(0, 0, prop.width, prop.height)
-        console.log(data)
+        const {dataUnion} = ctx.getImageData(0, 0, prop.width, prop.height)
 
         wx.canvasPutImageData({
           canvasId: 'poster',

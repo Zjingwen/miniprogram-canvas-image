@@ -1,5 +1,5 @@
-<view>
-  <canvas canvas-id="poster" style="width:300px;height:150px;"></canvas>
+<view style="background: #000">
+  <canvas canvas-id="poster" style="width:330px;height:518px;margin: 0 auto;"></canvas>
   <button bindtap="onButAll">触发 全部</button>
   <button bindtap="onBut0">触发 0</button>
   <button bindtap="onBut1">触发 1</button>
