@@ -20,6 +20,8 @@ import {
   start
 } from './start'
 
+import {ContexExtension, CanvasExtension} from './extension'
+
 function flattenFnArray(fns, canvas, customProps) {
   fns = Array.isArray(fns) ? fns : [fns]
   canvas = Array.isArray(canvas) ? canvas : [canvas]
@@ -33,8 +35,8 @@ function flattenFnArray(fns, canvas, customProps) {
 function createCanvas(width, height) {
   const el = wx.createOffscreenCanvas({type: '2d', width, height})
   return {
-    canvas: el,
-    ctx: el.getContext('2d')
+    canvas: CanvasExtension(el),
+    ctx: ContexExtension(el.getContext('2d'))
   }
 }
 

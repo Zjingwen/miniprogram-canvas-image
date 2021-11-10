@@ -26,52 +26,38 @@ Page({
         console.log('onBootstrap-1-canvas', el)
         console.log('onBootstrap-1-prop', prop)
 
-        // const {canvas, ctx} = el
-        // console.log(canvas)
-        // // 创建一个图片
-        // const image = canvas.createImage()
+        const {canvas, ctx} = el
+        console.log(canvas.testLog)
+        console.log(ctx.testLog)
+        // 创建一个图片
+        const image = canvas.createImage()
 
-        // // 等待图片加载
-        // await new Promise(resolve => {
-        //   image.onload = resolve
-        //   image.src = 'http://pic.616pic.com/bg_w1180/00/11/34/vo5eyRAGS3.jpg' // 要加载的图片 url
-        // })
-
-        // 把图片画到离屏 canvas 上
-        // ctx.clearRect(0, 0, prop.width, prop.height)
-        // ctx.drawImage(image, 0, 0, prop.width, prop.height)
-        // // 获取画完后的数据
-        // const {data, dataUnion} = ctx.getImageData(0, 0, prop.width, prop.height)
-        // console.log(data)
-        // console.log(ctx)
-        // wx.canvasPutImageData({
-        //   canvasId: 'poster',
-        //   x: 0,
-        //   y: 0,
-        //   width: prop.width,
-        //   height: prop.height,
-        //   data: dataUnion,
-        //   success(res) {
-        //     console.log('success canvasPutImageData', res)
-        //   },
-        //   fail(res) {
-        //     console.log('fail canvasPutImageData', res)
-        //   }
-        // })
-        await new Promise((resolve) => {
-          setTimeout(() => {
-            console.log('onBootstrap-1-1-promise-canvas', el)
-            console.log('onBootstrap-1-1-promise-prop', prop)
-            resolve()
-          }, 5000)
+        // 等待图片加载
+        await new Promise(resolve => {
+          image.onload = resolve
+          image.src = 'http://pic.616pic.com/bg_w1180/00/11/34/vo5eyRAGS3.jpg' // 要加载的图片 url
         })
 
-        await new Promise((resolve) => {
-          setTimeout(() => {
-            console.log('onBootstrap-1-2-promise-canvas', el)
-            console.log('onBootstrap-1-2-promise-prop', prop)
-            resolve()
-          }, 5000)
+        // 把图片画到离屏 canvas 上
+        ctx.clearRect(0, 0, prop.width, prop.height)
+        ctx.drawImage(image, 0, 0, prop.width, prop.height)
+        // 获取画完后的数据
+        const {data, dataUnion} = ctx.getImageData(0, 0, prop.width, prop.height)
+        console.log(data)
+
+        wx.canvasPutImageData({
+          canvasId: 'poster',
+          x: 0,
+          y: 0,
+          width: prop.width,
+          height: prop.height,
+          data: dataUnion,
+          success(res) {
+            console.log('success canvasPutImageData', res)
+          },
+          fail(res) {
+            console.log('fail canvasPutImageData', res)
+          }
         })
       },
     },
