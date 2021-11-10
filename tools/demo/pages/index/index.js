@@ -1,3 +1,6 @@
+/* eslint-disable object-shorthand */
+/* eslint-disable promise/catch-or-return */
+/* eslint-disable no-new */
 import '../../components/index'
 
 
@@ -8,27 +11,58 @@ Page({
     // console.groupEnd()
   },
   onShow() {
-    // console.group('onShow')
-    // this.onStart()
-    // console.groupEnd()
+    console.group('onShow')
+    this.onStart()
+    console.groupEnd()
   },
   onBootstrap: [
-    async (vm) => {
-      console.log('onBootstrap-1', vm)
+    {
+      customProp: {
+        height: 300,
+        width: 150
+      },
+      app: async (canvas, prop) => {
+        console.log('onBootstrap-1-canvas', canvas)
+        console.log('onBootstrap-1-prop', prop)
+
+        await new Promise((resolve) => {
+          setTimeout(() => {
+            console.log('onBootstrap-1-1-promise-canvas', canvas)
+            console.log('onBootstrap-1-1-promise-prop', prop)
+            resolve()
+          }, 5000)
+        })
+
+        await new Promise((resolve) => {
+          setTimeout(() => {
+            console.log('onBootstrap-1-2-promise-canvas', canvas)
+            console.log('onBootstrap-1-2-promise-prop', prop)
+            resolve()
+          }, 5000)
+        })
+      },
     },
-    async (vm) => {
-      console.log('onBootstrap-2', vm)
+    {
+      customProp: {
+        height: 100,
+        width: 120
+      },
+      app: async (canvas, prop) => {
+        console.log('onBootstrap-2-canvas', canvas)
+        console.log('onBootstrap-2-prop', prop)
+      },
     },
-    async (vm) => {
-      console.log('onBootstrap-3', vm)
-    }
+    {
+      customProp: {
+        height: 100,
+        width: 100
+      },
+      app: async (canvas, prop) => {
+        console.log('onBootstrap-3-canvas', canvas)
+        console.log('onBootstrap-3-prop', prop)
+      },
+    },
   ],
-  onMount(val) {
-    console.log('page onMount', val)
-  },
-  onUnmount() {
-    console.log('page onUnmount')
-  },
   onBut() {
     console.group('onBut')
     this.onStart()

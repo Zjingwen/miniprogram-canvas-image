@@ -1,9 +1,13 @@
+/* eslint-disable no-const-assign */
+/* eslint-disable max-len */
+/* eslint-disable prefer-rest-params */
 /* eslint-disable promise/catch-or-return */
 /* eslint-disable promise/valid-params */
 /* eslint-disable no-debugger */
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-use-before-define */
 // eslint-disable-next-line import/no-cycle
+// import {$wx} from '.'
 import {
   BOOTSTRAP,
   NOT_MOUNT,
@@ -15,21 +19,26 @@ import {
   start
 } from './start'
 
-function flattenFnArray(fns) {
+function flattenFnArray(fns, canvas, customProps) {
   fns = Array.isArray(fns) ? fns : [fns]
 
-  return function (vm) {
-    return fns.reduce((resultPromise, fn) => resultPromise.then(() => (fn(vm))), Promise.resolve())
+  return function (props) {
+    return fns.reduce((resultPromise, fn, i) => (resultPromise.then(() => fn(canvas[i], customProps[i], props))), Promise.resolve())
   }
 }
 
-// const apps = []
+function createCanvas(width, height) {
+  return wx.createOffscreenCanvas({type: '2d', width, height})
+}
 
-// 设置
+// 初始设置
 export function settingCanvas(vm) {
   console.log('settingCanvas', vm)
   vm.posterStatus = BOOTSTRAP
-  flattenFnArray(vm.onBootstrap)(vm).then(() => {
+  const canvas = vm.onBootstrap.map(v => (createCanvas(...v.customProp)))
+  const customProps = vm.onBootstrap.map(v => v.customProp)
+
+  flattenFnArray(vm.onBootstrap.map(v => v.app), canvas, customProps)().then(() => {
     vm.posterStatus = NOT_MOUNT
     start(vm)
   })
