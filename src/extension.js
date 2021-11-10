@@ -1,3 +1,5 @@
+/* eslint-disable no-debugger */
+/* eslint-disable no-delete-var */
 /* eslint-disable lines-between-class-members */
 /* eslint-disable no-proto */
 /* eslint-disable class-methods-use-this */
@@ -60,13 +62,14 @@ class ContexExtensions {
     // this.stroke()
     this.closePath()
     // 剪切
-    this.clip()
-    await cb()
+    // this.clip() ??
+    await cb.call(this)
     return 'success'
   }
 
   image({
     image = '',
+    color = '#fff',
     x = 0,
     y = 0,
     w = 10,
@@ -74,18 +77,28 @@ class ContexExtensions {
     r = 10
   }) {
     this.view({
-      color: '#000',
+      color,
       x,
       y,
       w,
       h,
       r,
-      cb: async () => {
-        await new Promise(() => {
-          this.drawImage(image, 12, 12, 306, 306)
-        })
+      cb: () => {
+        this.drawImage(image, x, y, w, h)
       }
     })
+  }
+
+  text({
+    context = 'TODO', x = 0, y = 0, size = 12, color = '#fff'
+  }) {
+    const fontWeight = 400
+    const textAlign = 'left'
+    this.font = `${fontWeight} ${size}px -apple-system-font, Helvetica Neue, Helvetica, sans-serif`
+    this.fillStyle = color
+    this.textBaseline = 'top'
+    this.textAlign = textAlign
+    this.fillText(context, x, y)
   }
 }
 
