@@ -90,7 +90,7 @@ class ContexExtensions {
   }
 
   text({
-    context = 'TODO', x = 0, y = 0, size = 12, color = '#fff'
+    context = '默认文字', x = 0, y = 0, size = 12, color = '#fff'
   }) {
     const fontWeight = 400
     const textAlign = 'left'
@@ -101,7 +101,6 @@ class ContexExtensions {
     this.fillText(context, x, y)
   }
 }
-
 
 export const CanvasExtension = function (canvas) {
   const subClass = new CanvasExtensions()
