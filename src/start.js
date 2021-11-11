@@ -1,12 +1,9 @@
-/* eslint-disable no-use-before-define */
-// eslint-disable-next-line import/no-cycle
 import {
   NOT_BOOTSTRAP,
   NOT_MOUNT,
   NOT_UNMOUNT,
   UNMOUNT,
 } from './helpers'
-// eslint-disable-next-line import/no-cycle
 import {
   settingCanvas,
   renderCanvas,

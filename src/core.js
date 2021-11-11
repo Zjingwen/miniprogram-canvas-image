@@ -1,13 +1,3 @@
-/* eslint-disable no-const-assign */
-/* eslint-disable max-len */
-/* eslint-disable prefer-rest-params */
-/* eslint-disable promise/catch-or-return */
-/* eslint-disable promise/valid-params */
-/* eslint-disable no-debugger */
-/* eslint-disable import/no-cycle */
-/* eslint-disable no-use-before-define */
-// eslint-disable-next-line import/no-cycle
-// import {$wx} from '.'
 import {
   BOOTSTRAP,
   NOT_MOUNT,

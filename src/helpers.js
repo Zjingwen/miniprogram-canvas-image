@@ -1,9 +1,3 @@
-/* eslint-disable no-undef-init */
-/* eslint-disable import/no-mutable-exports */
-/* eslint-disable no-const-assign */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable no-debugger */
-/* eslint-disable import/no-cycle */
 import {start} from './start'
 
 export const NOT_BOOTSTRAP = 'NOT_BOOTSTRAP'// 未准备

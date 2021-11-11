@@ -1,15 +1,12 @@
-/* eslint-disable no-debugger */
-/* eslint-disable no-delete-var */
-/* eslint-disable lines-between-class-members */
-/* eslint-disable no-proto */
-/* eslint-disable class-methods-use-this */
 // 扩展canvas方法
 // 扩展centext方法
 
 // 将子类方法，赋值给父类
 function inherit(subClass, superClass) {
-  Object.keys(subClass.__proto__).forEach(v => {
-    superClass.__proto__[v] = subClass.__proto__[v]
+  Object.getOwnPropertyNames(subClass.__proto__).forEach(v => {
+    if (v !== 'constructor') {
+      superClass.__proto__[v] = subClass.__proto__[v]
+    }
   })
   return superClass
 }

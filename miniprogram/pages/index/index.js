@@ -2,7 +2,7 @@
 /* eslint-disable object-shorthand */
 /* eslint-disable promise/catch-or-return */
 /* eslint-disable no-new */
-import '../../components/index'
+import '../../lib/index'
 
 
 Page({
