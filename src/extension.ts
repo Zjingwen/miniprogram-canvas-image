@@ -17,6 +17,18 @@ class CanvasExtensions {
   }
 }
 class ContexExtensions {
+  beginPath: any
+  fillStyle: any
+  arc: any
+  moveTo: any
+  lineTo: any
+  fill: any
+  closePath: any
+  font: any
+  textBaseline: any
+  textAlign: any
+  fillText: any
+  drawImage: any
   async view({
     color = '#000',
     w = 10,
@@ -24,7 +36,7 @@ class ContexExtensions {
     x = 0,
     y = 0,
     r = 0,
-    cb = () => {}
+    cb = () => { }
   }) {
     // 开始绘制
     this.beginPath()

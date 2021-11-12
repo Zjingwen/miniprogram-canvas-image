@@ -27,9 +27,9 @@ Page({
         console.log('onBootstrap-1-canvas', el)
         console.log('onBootstrap-1-prop', prop)
 
-        const {canvas, ctx} = el
-        console.log(canvas)
-        console.log(ctx)
+        const { canvas, ctx } = el
+        console.log('onBootstrap-1-canvas:canvas', canvas)
+        console.log('onBootstrap-1-canvas:ctx', ctx)
 
         ctx.view({
           color: '#FFFFFF',
@@ -133,7 +133,7 @@ Page({
           color: '#BEBEBE'
         })
 
-        const {dataUnion} = ctx.getImageData(0, 0, prop.width, prop.height)
+        const { dataUnion } = ctx.getImageData(0, 0, prop.width, prop.height)
 
         wx.canvasPutImageData({
           canvasId: 'poster',

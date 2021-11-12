@@ -10,20 +10,20 @@ import {
   start
 } from './start'
 
-import {ContexExtension, CanvasExtension} from './extension'
+import { ContexExtension, CanvasExtension } from './extension'
 
 function flattenFnArray(fns, canvas, customProps) {
   fns = Array.isArray(fns) ? fns : [fns]
   canvas = Array.isArray(canvas) ? canvas : [canvas]
   customProps = Array.isArray(customProps) ? customProps : [customProps]
 
-  return function (props) {
+  return function (props?: any) {
     return fns.reduce((resultPromise, fn, i) => (resultPromise.then(() => fn(canvas[i], customProps[i], props))), Promise.resolve())
   }
 }
 
 function createCanvas(width, height) {
-  const el = wx.createOffscreenCanvas({type: '2d', width, height})
+  const el = wx.createOffscreenCanvas({ type: '2d', width, height })
   return {
     canvas: CanvasExtension(el),
     ctx: ContexExtension(el.getContext('2d'))
