@@ -1,3 +1,3 @@
-import {register} from './helpers'
+import { register } from './helpers';
 
-Page = register(Page)
+Page = register(Page);

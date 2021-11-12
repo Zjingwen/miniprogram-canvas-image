@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "rollup -c --environment NODE_ENV:development",
     "watch": "rollup -c --watch --environment NODE_ENV:development",
-    "build": "rollup -c --environment NODE_ENV:production"
+    "build": "rollup -c --environment NODE_ENV:production",
+    "prettier": "prettier --write ./src/*",
+    "husky:init": "husky install",
+    "husky:add": "husky add .husky/pre-commit 'npx lint-staged'"
   },
   "miniprogram": "miniprogram_dist",
   "repository": {
@@ -16,12 +19,15 @@
   "author": "Zjingwen",
   "license": "MIT",
   "devDependencies": {
+    "prettier": "2.4.1",
     "rollup": "^2.59.0",
     "rollup-plugin-typescript": "^1.0.1",
     "tslib": "^2.3.1",
-    "typescript": "^4.4.4"
+    "typescript": "^4.4.4",
+    "rollup-plugin-uglify": "^6.0.4"
   },
   "dependencies": {
-    "rollup-plugin-uglify": "^6.0.4"
+    "husky": "^7.0.4",
+    "lint-staged": "^11.2.6"
   }
 }
